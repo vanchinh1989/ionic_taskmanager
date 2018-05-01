@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title text-center>Ionic Task List</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-fab top right>
+        <button ion-fab mini (click)="presentAddModal()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+
+    <ion-card>
+        <ion-card-header>
+            My Task
+        </ion-card-header>
+        <ion-list>
+            <ion-item-sliding *ngFor = "let item of pendingTasks">
+                <ion-item> 
+                    <ion-label>{{ item.Name }}</ion-label>
+                    <ion-checkbox name="chk" (click)="checkPendingItem(item.Id)" [checked]="item.IsDone"></ion-checkbox>
+                </ion-item>
+                <ion-item-options side="right">
+                    <button ion-button (click)="removeTask(item)"><ion-icon name="trash"></ion-icon>Delete</button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+            Archived Task
+        </ion-card-header>
+        <ion-list>
+            <ion-item-sliding *ngFor = "let item of doneTasks">
+                <ion-item>    
+                    <ion-label color="light">{{ item.Name }}</ion-label>
+                    <ion-checkbox name="chk" (click) = "checkDoneItem(item.Id)" [checked]="item.IsDone"></ion-checkbox>
+                </ion-item>
+                <ion-item-options side="right">
+                    <button ion-button (click)="removeTask(item)"><ion-icon name="trash"></ion-icon>Delete</button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+    </ion-card>
+    
+</ion-content>
